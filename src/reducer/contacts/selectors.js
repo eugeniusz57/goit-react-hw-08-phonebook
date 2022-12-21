@@ -3,8 +3,9 @@ const selectLoading = state => state.tasks.loading;
 const selectFilter = state => state.tasks.filter;
 
 const selectAllTasks = state => state.tasks.items;
-export default contactsSelectors = {
+const contactsSelectors = {
   selectLoading,
   selectFilter,
   selectAllTasks,
 };
+export default contactsSelectors;
