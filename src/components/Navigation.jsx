@@ -1,13 +1,13 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// import { authSelectors } from '../redux/auth';
+import authSelectors from '../reducer/auth/selectors';
 import { Box, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
 const Navigation = () => {
-  //   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLogin = useSelector(authSelectors.selectIsLoggedIn);
   const [value, setValue] = React.useState('contacts');
 
   return (
@@ -43,24 +43,26 @@ const Navigation = () => {
           }
         />
 
-        <BottomNavigationAction
-          component={NavLink}
-          to="/contacts"
-          label="Contacts"
-          value="contacts"
-          sx={{
-            '&:focus': {
-              color: 'secondary',
-            },
-          }}
-          icon={
-            <ContactPhoneIcon
-              sx={{
+        {isLogin && (
+          <BottomNavigationAction
+            component={NavLink}
+            to="/contacts"
+            label="Contacts"
+            value="contacts"
+            sx={{
+              '&:focus': {
                 color: 'secondary',
-              }}
-            />
-          }
-        />
+              },
+            }}
+            icon={
+              <ContactPhoneIcon
+                sx={{
+                  color: 'secondary',
+                }}
+              />
+            }
+          />
+        )}
       </BottomNavigation>
     </Box>
   );

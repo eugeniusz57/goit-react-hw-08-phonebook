@@ -1,19 +1,23 @@
-import { Box } from 'components/Box';
-
+import { Box } from '@mui/material';
 import { BsArrowLeft } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import notPage from '../images/blad-404.jpg';
 
 const NotFound = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
       <NavLink to={'/'}>
         <BsArrowLeft size={26} />
         Home page
       </NavLink>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <img src={notPage} alt="page not found" />
-      </Box>
+      <img src={notPage} alt="page not found" />
     </Box>
   );
 };

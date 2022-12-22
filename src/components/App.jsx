@@ -1,9 +1,11 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-// import NotFound from '../pages/NotFound';
+import NotFound from '../pages/NotFound';
 import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './GlobalStyled';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
 
 const Home = lazy(() => import('../pages/Home'));
 const Contacts = lazy(() => import('../pages/Contacts'));
@@ -16,11 +18,29 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/contacts" component={<LogIn />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<Register />}
+              />
+            }
+          />
         </Route>
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster position="top-right" reverseOrder={false} />
       <GlobalStyle />
