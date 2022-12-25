@@ -1,7 +1,12 @@
+import { ContactForm } from 'components/ContactForm/ContactForm';
+import { Sections } from 'components/Sections/Sections';
+
 const Contacts = () => {
   return (
     <>
-      <p>Contacts</p>
+      <Sections title="Phonebook">
+        <ContactForm />
+      </Sections>
     </>
   );
 };

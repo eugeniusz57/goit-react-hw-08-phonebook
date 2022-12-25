@@ -48,6 +48,7 @@ export default function Register() {
         component="form"
         onSubmit={handleSubmit}
         autoComplete="on"
+        minWidth="300px"
         sx={{
           display: 'flex',
           flexDirection: 'column',
