@@ -18,10 +18,10 @@ const ContactList = () => {
           borderRadius: '4px',
         }}
       >
-        {filtred &&
+        {/* {filtred &&
           filtred.map(contact => (
             <ContactListItem key={contact.id} {...contact} />
-          ))}
+          ))} */}
       </Box>
     </>
   );

@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import PhoneIcon from '@mui/icons-material/Phone';
-export const ContactListItem = ({ id, name, number }) => {
+export const ContactListItem = () => {
   //   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   return (
@@ -20,7 +20,7 @@ export const ContactListItem = ({ id, name, number }) => {
         },
       }}
     >
-      <Typography
+      {/* <Typography
         sx={{
           display: 'flex',
           textAlign: 'start',
@@ -71,7 +71,7 @@ export const ContactListItem = ({ id, name, number }) => {
             />
           )}
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

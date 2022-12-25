@@ -7,7 +7,7 @@ import { GlobalStyle } from './GlobalStyled';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshUser } from '../reducer/auth/operations';
+import { refreshUser } from 'reducer/auth/operations';
 import authSelectors from 'reducer/auth/selectors';
 
 const Home = lazy(() => import('../pages/Home'));
@@ -18,6 +18,7 @@ const Register = lazy(() => import('../pages/Register'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefresh = useSelector(authSelectors.selectIsRefreshing);
+  console.log('isRefresh', isRefresh);
 
   useEffect(() => {
     dispatch(refreshUser());
