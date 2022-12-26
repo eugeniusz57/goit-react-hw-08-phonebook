@@ -1,7 +1,22 @@
 import { Box } from '@mui/material';
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
+import { useSelector } from 'react-redux';
+import contactsSelectors from '../../reducer/contacts/selectors';
 
-const ContactList = () => {
+export const ContactList = () => {
+  const items = useSelector(contactsSelectors.selectAllContacts);
+  const filter = useSelector(contactsSelectors.selectStatusFilter);
+
+  const findContact = () => {
+    const toLowerFilter = filter.toLowerCase().trim();
+    if (!toLowerFilter) {
+      return items;
+    }
+
+    return items.filter(item =>
+      item.name.toLowerCase().includes(toLowerFilter)
+    );
+  };
   return (
     <>
       <Box
@@ -18,10 +33,11 @@ const ContactList = () => {
           borderRadius: '4px',
         }}
       >
-        {/* {filtred &&
-          filtred.map(contact => (
-            <ContactListItem key={contact.id} {...contact} />
-          ))} */}
+        {findContact().length === 0 ? (
+          <p>Yoy don't have any contact</p>
+        ) : (
+          findContact().map(item => <ContactListItem key={item.id} {...item} />)
+        )}
       </Box>
     </>
   );

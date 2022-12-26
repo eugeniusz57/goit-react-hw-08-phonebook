@@ -2,9 +2,14 @@ import { Box, Button, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import PhoneIcon from '@mui/icons-material/Phone';
-export const ContactListItem = () => {
-  //   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
+import { deleteContact } from 'reducer/contacts/operations';
+import contactsSelectors from 'reducer/contacts/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
+export const ContactListItem = ({ number, name, id }) => {
+  const isDeleting = useSelector(contactsSelectors.selectLoading);
+  const dispatch = useDispatch();
   return (
     <Box
       component="li"
@@ -20,7 +25,7 @@ export const ContactListItem = () => {
         },
       }}
     >
-      {/* <Typography
+      <Typography
         sx={{
           display: 'flex',
           textAlign: 'start',
@@ -45,7 +50,10 @@ export const ContactListItem = () => {
         </Typography>
         <Button
           type="button"
-          onClick={() => deleteContact(id)}
+          onClick={() => {
+            dispatch(deleteContact(id));
+            toast.success(`Contact deleted!`);
+          }}
           disabled={isDeleting}
           sx={{ padding: 0, minWidth: '24px' }}
         >
@@ -71,7 +79,7 @@ export const ContactListItem = () => {
             />
           )}
         </Button>
-      </Box> */}
+      </Box>
     </Box>
   );
 };

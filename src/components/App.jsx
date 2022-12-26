@@ -1,4 +1,3 @@
-import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import NotFound from '../pages/NotFound';
@@ -9,6 +8,8 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'reducer/auth/operations';
 import authSelectors from 'reducer/auth/selectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() => import('../pages/Home'));
 const Contacts = lazy(() => import('../pages/Contacts'));
@@ -60,7 +61,7 @@ export const App = () => {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Toaster position="top-right" reverseOrder={false} />
+          <ToastContainer autoClose={2000} />
           <GlobalStyle />
         </>
       )}
