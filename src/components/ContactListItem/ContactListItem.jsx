@@ -13,7 +13,6 @@ export const ContactListItem = ({ number, name, id }) => {
   return (
     <Box
       component="li"
-      fullWidth
       sx={{
         display: 'inline',
         marginBottom: '5px',

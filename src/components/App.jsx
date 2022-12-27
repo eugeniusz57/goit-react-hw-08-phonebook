@@ -10,6 +10,8 @@ import { refreshUser } from 'reducer/auth/operations';
 import authSelectors from 'reducer/auth/selectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spiner from './Spiner/Spiner';
+import { Container } from '@mui/material';
 
 const Home = lazy(() => import('../pages/Home'));
 const Contacts = lazy(() => import('../pages/Contacts'));
@@ -26,9 +28,9 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Container maxWidth="sm">
       {isRefresh ? (
-        <p>Refreshing</p>
+        <Spiner />
       ) : (
         <>
           <Routes>
@@ -65,6 +67,6 @@ export const App = () => {
           <GlobalStyle />
         </>
       )}
-    </>
+    </Container>
   );
 };

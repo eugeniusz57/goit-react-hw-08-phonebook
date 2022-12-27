@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -71,20 +72,21 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (!persistedToken) {
+    const { token } = thunkAPI.getState().auth;
+
+    if (!token) {
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
       // If there is a token, add it to the HTTP header and perform the request
-      setAuthHeader(persistedToken);
+      setAuthHeader(token);
       const { data } = await axios.get('/users/current');
-
+      console.log('data', data);
       return data;
     } catch (error) {
+      toast.error('Something went wrong... Please try again!');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
