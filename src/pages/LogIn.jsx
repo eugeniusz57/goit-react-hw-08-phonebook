@@ -52,7 +52,7 @@ export default function LogIn() {
         }}
       >
         <TextField
-          helperText="Please enter your Email"
+          helperText="Please enter your Email: username@gmail.com"
           fullWidth
           margin="normal"
           required
@@ -62,6 +62,9 @@ export default function LogIn() {
           name="email"
           value={email}
           onChange={handleChange}
+          inputProps={{
+            pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+          }}
         />
         <TextField
           helperText="Please enter your password"

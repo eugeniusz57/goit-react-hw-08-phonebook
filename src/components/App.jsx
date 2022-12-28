@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import NotFound from '../pages/NotFound';
 import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './GlobalStyled';
@@ -32,7 +32,7 @@ export const App = () => {
       {isRefresh ? (
         <Spiner />
       ) : (
-        <>
+        <Suspense fallback={<Spiner />}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
@@ -65,7 +65,7 @@ export const App = () => {
           </Routes>
           <ToastContainer autoClose={2000} />
           <GlobalStyle />
-        </>
+        </Suspense>
       )}
     </Container>
   );

@@ -7,10 +7,9 @@ import authSelectors from '../reducer/auth/selectors';
  */
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  const isLogin = useSelector(authSelectors.selectIsLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
   const IsRefreshing = useSelector(authSelectors.selectIsRefreshing);
-  // && !IsRefreshing
-  const shouldRedirect = !isLogin && !IsRefreshing;
+  const shouldRedirect = !isLoggedIn && !IsRefreshing;
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };

@@ -47,7 +47,7 @@ export default function Register() {
       <Box
         component="form"
         onSubmit={handleSubmit}
-        autoComplete="on"
+        autoComplete="off"
         minWidth="300px"
         sx={{
           display: 'flex',
@@ -70,7 +70,7 @@ export default function Register() {
           onChange={handleChange}
         />
         <TextField
-          helperText="Please enter your Email"
+          helperText="Please enter your Email: username@gmail.com"
           margin="normal"
           fullWidth
           required
@@ -80,6 +80,9 @@ export default function Register() {
           name="email"
           value={email}
           onChange={handleChange}
+          inputProps={{
+            pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+          }}
         />
         <TextField
           helperText="Please enter your password"
