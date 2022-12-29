@@ -29,7 +29,7 @@ export default function UserMenu() {
         <AccountCircleIcon
           sx={{
             color: 'white',
-            background: '#303f9f',
+            background: '#3f51b5',
             borderRadius: 50,
             marginRight: 1,
           }}

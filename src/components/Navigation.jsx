@@ -25,6 +25,8 @@ const Navigation = () => {
         }}
       >
         <BottomNavigationAction
+          disableFocusListener
+          disableTouchListener
           component={NavLink}
           to="/"
           label="Home"
@@ -33,11 +35,17 @@ const Navigation = () => {
             '&:focus': {
               color: 'secondary',
             },
+            '&.Mui-active': {
+              color: 'secondary',
+            },
           }}
           icon={
             <HomeIcon
               sx={{
                 color: 'secondary',
+                '&:hover': {
+                  color: 'secondary',
+                },
               }}
             />
           }
@@ -51,6 +59,9 @@ const Navigation = () => {
             value="contacts"
             sx={{
               '&:focus': {
+                color: 'secondary',
+              },
+              '&.Mui-active': {
                 color: 'secondary',
               },
             }}
